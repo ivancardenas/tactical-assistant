@@ -14,7 +14,7 @@ unsigned long timeoutPeriod = 3000;
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
-char data[32] = {"_A message from RPi w/ NRF24L+!"};
+unsigned long data = 10101010;
 
 void showData(void) {
 	printf("Data: ");
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
 
 		fflush(stdout); // Cleaning output.*/
 
-		if (radio.writeBlocking(&data, sizeof(data), timeoutPeriod)) {
+		if (radio.writeBlocking(&data, sizeof(unsigned long), timeoutPeriod)) {
 			printf(".");
 		} else {
 			printf("?");
