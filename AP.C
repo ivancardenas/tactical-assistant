@@ -99,7 +99,9 @@ int main(int argc, char** argv) {
 		bool time_out = false;
 
 		while (!radio.available()) {
-			if (chrono::high_resolution_clock::now() - waiting > 2000) {
+
+			if (chrono::duration_cast<chrono::nanoseconds>
+				(chrono::high_resolution_clock::now() - waiting).count() > 2000) {
 				time_out = true;
 				break;
 			}
@@ -112,7 +114,7 @@ int main(int argc, char** argv) {
 				auto end_time = chrono::high_resolution_clock::now();
 
 				printf("Elapsed time: ");
-				printf((end_time - init_time));
+				printf(chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count());
 				printf(" nanoseconds");
 
 				// showData();
