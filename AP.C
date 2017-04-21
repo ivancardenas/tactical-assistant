@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 		radio.startListening();
 	} else {*/
 		radio.openWritingPipe(pipes[1]);
-		//radio.openReadingPipe(1,pipes[0]);
+		radio.openReadingPipe(1,pipes[0]);
 		radio.stopListening();							/*}*/
 
 	radio.printDetails();
@@ -90,13 +90,13 @@ int main(int argc, char** argv) {
 			fflush(stdout);
 		// } else {*/
 
-		radio.openReadingPipe(1, pipes[0]);
-		memset(&data, '\0', sizeof(data)); // ?
+		//radio.openReadingPipe(1, pipes[0]);
+		//memset(&data, '\0', sizeof(data)); // ?
 		radio.startListening();
 
 		// finalTime
-		auto waiting = chrono::high_resolution_clock::now();
-		bool time_out = false;
+		//auto waiting = chrono::high_resolution_clock::now();
+		//bool time_out = false;
 
 		/*while (!radio.available()) {
 
@@ -109,13 +109,13 @@ int main(int argc, char** argv) {
 		}*/
 
 		if (radio.available()) {
-				auto init_time_r = chrono::high_resolution_clock::now();
+				//auto init_time_r = chrono::high_resolution_clock::now();
 				radio.read(&data, sizeof(unsigned long));
-				auto end_time = chrono::high_resolution_clock::now();
+				//auto end_time = chrono::high_resolution_clock::now();
 
-				printf("Elapsed time: ");
-				cout << chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count() << endl;
-				printf(" nanoseconds");
+				//printf("Elapsed time: ");
+				//cout << chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count() << endl;
+				//printf(" nanoseconds");
 
 				showData();
 				fflush(stdout); // Cleaning output.
