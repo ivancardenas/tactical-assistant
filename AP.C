@@ -119,6 +119,8 @@ int main(int argc, char** argv) {
 				fflush(stdout); // Cleaning output.
 			}
 
-			// delay(5);	
-			return 0;
+			// delay(5);
+
+		}
+		return 0;
 }
