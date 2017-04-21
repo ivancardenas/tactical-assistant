@@ -100,12 +100,14 @@ int main(int argc, char** argv) {
 
 		while (!radio.available()) {
 
-			if (chrono::duration_cast<chrono::nanoseconds>
+			/*if (chrono::duration_cast<chrono::nanoseconds>
 				(chrono::high_resolution_clock::now() - waiting).count() > 200000) {
 				time_out = true;
 				break;
-			}
+			}*/
+			printf("No answer.");
 		}
+		printf("Yeah, answer!");
 
 		if (time_out) printf("Failed, time out.");
 		else {
