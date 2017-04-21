@@ -101,7 +101,7 @@ int main(int argc, char** argv) {
 		while (!radio.available()) {
 
 			if (chrono::duration_cast<chrono::nanoseconds>
-				(chrono::high_resolution_clock::now() - waiting).count() > 2000) {
+				(chrono::high_resolution_clock::now() - waiting).count() > 200000) {
 				time_out = true;
 				break;
 			}
