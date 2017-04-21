@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
 		if (time_out) printf("Failed, time out.");
 		else {
 				auto init_time_r = chrono::high_resolution_clock::now();
-				radio.read(&data, 32);
+				radio.read(&data, sizeof(unsigned long));
 				auto end_time = chrono::high_resolution_clock::now();
 
 				printf("Elapsed time: ");
