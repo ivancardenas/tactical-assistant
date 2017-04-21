@@ -1,0 +1,2 @@
+LD_LIBRARY_PATH=/usr/local/lib/
+g++ AP.C -L../RF24/ -lrf24 -o ap
