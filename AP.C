@@ -114,7 +114,7 @@ int main(int argc, char** argv) {
 				auto end_time = chrono::high_resolution_clock::now();
 
 				printf("Elapsed time: ");
-				printf(chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count());
+				cout << chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count() << endl;
 				printf(" nanoseconds");
 
 				// showData();
