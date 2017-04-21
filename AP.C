@@ -1,7 +1,9 @@
-#include <cstdlib>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 #include <string>
+#include <chrono>
+
 #include "../RF24/RF24.h"
 
 using namespace std;
@@ -9,10 +11,10 @@ using namespace std;
 RF24 radio(22,0);
 
 bool radioNumber = 0;
-unsigned long timeoutPeriod = 3000;  
+unsigned long timeoutPeriod = 3000;
 
-const uint64_t pipes[2] = { 0xABCDABCD71LL, 0x544d52687CLL };   
-char data[32] = {"_A message from RPi w/ NRF24L+!"};   
+const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
+char data[32] = {"_A message from RPi w/ NRF24L+!"};
 
 void showData(void) {
 	printf("Data: ");
@@ -24,17 +26,17 @@ void showData(void) {
 }
 
 int main(int argc, char** argv) {
-	const int role_rx = 0, role_tx = 1;
-	int role = role_rx;
+	/*const int role_rx = 0, role_tx = 1;
+	int role = role_rx;*/
 
-	printf("\n ************ Role Setup ***********\n");
+	/*printf("\n ************ Role Setup ***********\n");
 	string input = "";
-	char myChar = {0};
+	char myChar = {0};*/
 
-	cout << "Choose a role: Enter 0 for Rx, 1 for Tx (CTRL+C to exit) \n>";
-	getline(cin,input);
+	/*cout << "Choose a role: Enter 0 for Rx, 1 for Tx (CTRL+C to exit) \n>";
+	getline(cin,input);*/
 
-	if (input.length() == 1) {
+	/*if (input.length() == 1) {
 		myChar = input[0];
 		if (myChar == '0') {
 			cout << "Role: Rx " << endl << endl;
@@ -42,52 +44,81 @@ int main(int argc, char** argv) {
 			cout << "Role: Tx " << endl << endl;
 		        role = role_tx;
 	        }
-	}
-	
-	switch(role) {
+	}*/
+
+	/*switch(role) {
 		case role_rx :
 			radioNumber = 0;
 			break;
 		case role_tx :
 			radioNumber=1;
-			 break;								}
+			 break;								}*/
 
 	radio.begin();
 	radio.setChannel(110);
-	radio.setDataRate(RF24_250KBPS);
 	radio.setPALevel(RF24_PA_MIN);
+	radio.setDataRate(RF24_250KBPS);
 
-	if (!radioNumber) {
+	/*if (!radioNumber) {
 		radio.openWritingPipe(pipes[0]);
 		radio.openReadingPipe(1,pipes[1]);
 		memset(&data,'\0',sizeof(data));
 		radio.startListening();
-	} else {
+	} else {*/
 		radio.openWritingPipe(pipes[1]);
-		radio.openReadingPipe(1,pipes[0]);
-		radio.stopListening();							}
+		//radio.openReadingPipe(1,pipes[0]);
+		radio.stopListening();							/*}*/
 
 	radio.printDetails();
-	printf("Start loop:\n");
-	
+
+
 	while (1) {
-		if (radioNumber) {
-			if (radio.writeBlocking(&data,sizeof(data),timeoutPeriod)) {
-				printf(".");
-			} else {
-				printf("?");
-			}
-			
-			fflush(stdout);
+		//if (radioNumber) {
+		auto init_time = chrono::high_resolution_clock::now();
+
+		if (!radio.write(&data, sizeof(unsigned long)))
+			printf("Failed, could not send.");
+
+		fflush(stdout); // Cleaning output.
+
+		/* if (radio.writeBlocking(&data, sizeof(data), timeoutPeriod)) {
+			printf(".");
 		} else {
-			if (radio.available()) {
-				radio.read(&data,32);
-				showData();
-				fflush(stdout);
+			printf("?");
+		}
+
+			fflush(stdout);
+		// } else {*/
+
+		radio.openReadingPipe(1, pipes[0]);
+		memset(&data, '\0', sizeof(data)); // ?
+		radio.startListening();
+
+		// finalTime
+		auto waiting = chrono::high_resolution_clock::now();
+		bool time_out = false;
+
+		while (!radio.available()) {
+			if (chrono::high_resolution_clock::now() - waiting > 2000) {
+				time_out = true;
+				break;
 			}
 		}
-		
-		delay(5);
-	}
-	return 0;
+
+		if (time_out) printf("Failed, time out.");
+		else {
+				auto init_time_r = chrono::high_resolution_clock::now()
+				radio.read(&data, sizeof(unsigned long));
+				auto end_time = chrono::high_resolution_clock::now();
+
+				prinft("Elapsed time: ");
+				printf((end_time - init_time));
+				printf(" nanoseconds");
+
+				// showData();
+				fflush(stdout); // Cleaning output.
+			}
+
+			// delay(5);	
+			return 0;
 }
