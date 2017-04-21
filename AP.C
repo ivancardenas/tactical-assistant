@@ -10,7 +10,7 @@ using namespace std;
 
 RF24 radio(22,0);
 
-unsigned long timeoutPeriod = 3000;
+unsigned long timeoutPeriod = 3000000;
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
