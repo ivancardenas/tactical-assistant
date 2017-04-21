@@ -76,12 +76,12 @@ int main(int argc, char** argv) {
 		//if (radioNumber) {
 		auto init_time = chrono::high_resolution_clock::now();
 
-		if (!radio.write(&data, sizeof(unsigned long)))
+		/* if (!radio.write(&data, sizeof(unsigned long)))
 			printf("Failed, could not send.");
 
-		fflush(stdout); // Cleaning output.
+		fflush(stdout); // Cleaning output.*/
 
-		/* if (radio.writeBlocking(&data, sizeof(data), timeoutPeriod)) {
+		if (radio.writeBlocking(&data, sizeof(data), timeoutPeriod)) {
 			printf(".");
 		} else {
 			printf("?");
