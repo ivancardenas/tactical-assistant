@@ -10,10 +10,10 @@ using namespace std;
 
 RF24 radio(22,0);
 
-bool radioNumber = 0;
 unsigned long timeoutPeriod = 3000;
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
+
 char data[32] = {"_A message from RPi w/ NRF24L+!"};
 
 void showData(void) {
@@ -65,14 +65,14 @@ int main(int argc, char** argv) {
 		memset(&data,'\0',sizeof(data));
 		radio.startListening();
 	} else {*/
-		radio.openWritingPipe(pipes[1]);
-		radio.openReadingPipe(1,pipes[0]);
-		radio.stopListening();							/*}*/
+								/*}*/
 
 	radio.printDetails();
 
 
 	while (1) {
+		radio.openWritingPipe(pipes[1]);
+		radio.stopListening();
 		//if (radioNumber) {
 		auto init_time = chrono::high_resolution_clock::now();
 
@@ -90,7 +90,7 @@ int main(int argc, char** argv) {
 			fflush(stdout);
 		// } else {*/
 
-		//radio.openReadingPipe(1, pipes[0]);
+		radio.openReadingPipe(1, pipes[0]);
 		//memset(&data, '\0', sizeof(data)); // ?
 		radio.startListening();
 
