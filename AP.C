@@ -98,19 +98,17 @@ int main(int argc, char** argv) {
 		auto waiting = chrono::high_resolution_clock::now();
 		bool time_out = false;
 
-		while (!radio.available()) {
+		/*while (!radio.available()) {
 
-			/*if (chrono::duration_cast<chrono::nanoseconds>
+			if (chrono::duration_cast<chrono::nanoseconds>
 				(chrono::high_resolution_clock::now() - waiting).count() > 200000) {
 				time_out = true;
 				break;
-			}*/
+			}
 			printf("No answer.");
-		}
-		printf("Yeah, answer!");
+		}*/
 
-		if (time_out) printf("Failed, time out.");
-		else {
+		if (radio.available()) {
 				auto init_time_r = chrono::high_resolution_clock::now();
 				radio.read(&data, sizeof(unsigned long));
 				auto end_time = chrono::high_resolution_clock::now();
@@ -119,11 +117,11 @@ int main(int argc, char** argv) {
 				cout << chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count() << endl;
 				printf(" nanoseconds");
 
-				// showData();
+				showData();
 				fflush(stdout); // Cleaning output.
 			}
 
-			// delay(5);
+			delay(5);
 
 		}
 		return 0;
