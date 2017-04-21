@@ -16,14 +16,14 @@ const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
 unsigned long data = 10101010;
 
-void showData(void) {
+/*void showData(void) {
 	printf("Data: ");
 	for(int i = 0; i < 32; i++) {
 		if (isprint(data[i])) printf("%c", data[i]);
 		else printf(".");
 	}
 	printf("\n\r");
-}
+}*/
 
 int main(int argc, char** argv) {
 	/*const int role_rx = 0, role_tx = 1;
