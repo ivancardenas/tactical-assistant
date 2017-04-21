@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
 				//printf(init_time_r);
 				//printf("Elapsed time: ");
 				//cout << chrono::duration_cast<chrono::nanoseconds>(end_time - init_time).count() << endl;
-				//printf(" nanoseconds");
+				printf(" nanoseconds");
 
 				//showData();
 				fflush(stdout); // Cleaning output.
