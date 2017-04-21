@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 
 		fflush(stdout); // Cleaning output.*/
 
-		if (radio.writeBlocking(&data, sizeof(unsigned long), timeoutPeriod)) {
+		if (radio.write(&data, sizeof(unsigned long))) {
 			printf(".");
 		} else {
 			printf("?");
