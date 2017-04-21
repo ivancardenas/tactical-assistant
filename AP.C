@@ -53,8 +53,7 @@ int main(int argc, char** argv) {
 			 break;								}
 
 	radio.begin();
-	radio.setRetries(15,15);
-	radio.setChannel(1);
+	radio.setChannel(110);
 	radio.setDataRate(RF24_250KBPS);
 	radio.setPALevel(RF24_PA_MIN);
 
