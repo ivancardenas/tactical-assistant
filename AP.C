@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
 				radio.read(&data, sizeof(unsigned long));
 				auto end_time = chrono::high_resolution_clock::now();
 
-				prinft("Elapsed time: ");
+				printf("Elapsed time: ");
 				printf((end_time - init_time));
 				printf(" nanoseconds");
 
