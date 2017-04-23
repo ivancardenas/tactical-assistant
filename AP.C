@@ -8,7 +8,7 @@
 
 using namespace std;
 
-RF24 radio(22,0);
+RF24 radio(22, 0);
 
 unsigned long timeoutPeriod = 3000000;
 
@@ -16,17 +16,20 @@ const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
 int main(int argc, char** argv) {
 
+	// Configuring nRF24L01+
 	radio.begin();
 	radio.setChannel(110);
 	radio.setPALevel(RF24_PA_MIN);
 	radio.setDataRate(RF24_250KBPS);
-
 	radio.openWritingPipe(pipes[1]);
 	radio.openReadingPipe(1, pipes[0]);
 
-	radio.printDetails();
+	// radio.printDetails();
 
 	while (true) {
+
+		auto start = chrono::high_resolution_clock::now();
+		uint64_t stime = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time).count();
 
 		unsigned long data = 10101010;
 		radio.stopListening();
