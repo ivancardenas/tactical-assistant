@@ -30,12 +30,12 @@ int main(int argc, char** argv) {
 
 		auto start = chrono::high_resolution_clock::now();
 		auto ended = chrono::high_resolution_clock::now();
-		uint64_t stime = chrono::duration_cast<chrono::nanoseconds>(start - ended).count();
+		unsigned long stime = chrono::duration_cast<chrono::nanoseconds>(start - ended).count();
 
-		unsigned long data = 10101010;
+		// unsigned long data = 10101010;
 		radio.stopListening();
 
-		if (radio.write(&data, sizeof(unsigned long)))
+		if (radio.write(&stime, sizeof(unsigned long)))
 			printf(".");
 		else printf("?");
 
