@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
 	while (true) {
 
 		auto start = chrono::high_resolution_clock::now();
-		uint64_t stime = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time).count();
+		uint64_t stime = chrono::duration_cast<chrono::nanoseconds>(start).count();
 
 		unsigned long data = 10101010;
 		radio.stopListening();
