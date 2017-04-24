@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
 
 	while (true) {
 
-		auto start = high_resolution_clock::now();
+		auto start = high_resolution_clock::now().time_since_epoch();
 		auto ended = high_resolution_clock::now();
 
 		unsigned long long stime = chrono::duration_cast
