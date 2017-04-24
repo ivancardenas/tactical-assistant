@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 		auto ended = high_resolution_clock::now();
 
 		unsigned long long stime = chrono::duration_cast
-									<chrono::nanoseconds>(ended - 0).count();
+									<chrono::nanoseconds>(ended - start).count();
 
 		printf("Sent: %llu \n", stime);
 
