@@ -39,13 +39,13 @@ int main(int argc, char** argv) {
 		radio.stopListening();
 
 		while (!radio.write(&stime, sizeof(unsigned long long)))
-			printf("Could not sent \n");
+			printf("Could not sent.\n");
 
 		fflush(stdout);
 
 		radio.startListening();
 
-		if (radio.available()) { // Test with while
+		while (radio.available()) { // Test with while
 
 			unsigned long long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long long));
