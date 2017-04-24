@@ -30,18 +30,21 @@ int main(int argc, char** argv) {
 
 	while (true) {
 
-		auto start = high_resolution_clock::now();
-		unsigned long long stn = duration_cast<nanoseconds>(start.time_since_epoch()).count();
+		/* auto start = high_resolution_clock::now();
 		auto ended = high_resolution_clock::now();
 
 		unsigned long long stime = chrono::duration_cast
-									<chrono::nanoseconds>(ended - start).count();
+									<chrono::nanoseconds>(ended - start).count(); */
 
 		printf("Sent: %llu \n", stime);
 
 		radio.stopListening();
 
 		if (!radio.write(&stime, sizeof(unsigned long long))) {}
+
+		auto start = high_resolution_clock::now();
+		unsigned long long stn = duration_cast
+			<nanoseconds>(start.time_since_epoch()).count();
 
 		// fflush(stdout);
 
@@ -51,7 +54,11 @@ int main(int argc, char** argv) {
 
 		radio.read(&rtime, sizeof(unsigned long long));
 
-		printf("Received: %llu \n", rtime);
+		auto ended = high_resolution_clock::now();
+		unsigned long long etn = duration_cast
+			<nanoseconds>(start.time_since_epoch()).count();
+
+		printf("Received: %llu \n", etn - stn);
 
 		// fflush(stdout);
 
