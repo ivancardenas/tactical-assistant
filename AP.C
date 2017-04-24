@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 		radio.startListening();
 
 		// while (!radio.available() && timeout < 100) timeout++;
-		if (radio.available())
+		while (radio.available())
 			radio.read(&rtime, sizeof(unsigned long long));
 
 		printf("Received: %llu \n", rtime);
