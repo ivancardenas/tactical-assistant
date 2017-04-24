@@ -4,8 +4,6 @@
 #include <string>
 #include <chrono>
 
-#include <ctime>
-#include <ratio>
 
 #include "../RF24/RF24.h"
 
@@ -35,8 +33,8 @@ int main(int argc, char** argv) {
 		auto start = chrono::high_resolution_clock::now();
 		auto ended = chrono::high_resolution_clock::now();
 
-		unsigned long long stime = chrono::duration_cast
-									<chrono::nanoseconds>(ended - 0).count();
+		/* unsigned long long stime = chrono::duration_cast
+									<chrono::nanoseconds>(ended - 0).count();*/
 
 		duration<long long> time_span = duration_cast<duration<long long>>(ended);
 
