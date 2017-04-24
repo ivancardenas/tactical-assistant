@@ -44,6 +44,8 @@ int main(int argc, char** argv) {
 		unsigned long long stn = duration_cast
 			<nanoseconds>(start.time_since_epoch()).count();
 
+		printf(" Mande: %llu", stn);
+
 		if (!radio.write(&stn, sizeof(unsigned long long))) {}
 
 		// fflush(stdout);
