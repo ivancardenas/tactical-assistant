@@ -11,7 +11,7 @@ using namespace std;
 RF24 radio(22, 0);
 
 unsigned int timeout = 0;
-unsigned long long time;
+unsigned long long rtime;
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
@@ -47,9 +47,9 @@ int main(int argc, char** argv) {
 
 		while (!radio.available() && timeout < 100) timeout++;
 
-		radio.read(&time, sizeof(unsigned long long));
+		radio.read(&rtime, sizeof(unsigned long long));
 
-		printf("Received: %llu \n", time);
+		printf("Received: %llu \n", rtime);
 
 		// fflush(stdout);
 
