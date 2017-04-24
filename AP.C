@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
 		auto start = chrono::high_resolution_clock::now();
 		auto ended = chrono::high_resolution_clock::now();
 		unsigned long long stime = chrono::duration_cast<chrono::nanoseconds>(ended - start).count();
+		printf("Envie: %llu \n", stime);
 
 		// unsigned long data = 10101010;
 		radio.stopListening();
@@ -47,7 +48,7 @@ int main(int argc, char** argv) {
 
 			unsigned long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long long));
-			printf("%llu", init_time_r);
+			printf("LLegó: %llu \n", init_time_r);
 			fflush(stdout);
 		}
 		delay(5);
