@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
 	while (true) {
 
 		auto start = high_resolution_clock::now();
+		unsigned long long stn = duration_cast<nanoseconds>(start.time_since_epoch()).count();
 		auto ended = high_resolution_clock::now();
 
 		unsigned long long stime = chrono::duration_cast
