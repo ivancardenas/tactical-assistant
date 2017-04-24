@@ -4,12 +4,10 @@
 #include <string>
 #include <chrono>
 
-#include <ctime>
-#include <ratio>
-
 #include "../RF24/RF24.h"
 
 using namespace std;
+using namespace std::chrono;
 
 RF24 radio(22, 0);
 
@@ -32,13 +30,11 @@ int main(int argc, char** argv) {
 
 	while (true) {
 
-		auto start = chrono::high_resolution_clock::now();
-		auto ended = chrono::high_resolution_clock::now();
+		auto start = high_resolution_clock::now();
+		auto ended = high_resolution_clock::now();
 
-		/* unsigned long long stime = chrono::duration_cast
-									<chrono::nanoseconds>(ended - 0).count();*/
-
-		duration<unsigned long long> stime = duration_cast<duration<unsigned long long>>(ended);
+		unsigned long long stime = chrono::duration_cast
+									<chrono::nanoseconds>(ended - 0).count();
 
 		printf("Sent: %llu \n", stime);
 
