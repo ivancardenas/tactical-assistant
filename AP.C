@@ -30,14 +30,17 @@ int main(int argc, char** argv) {
 
 		auto start = chrono::high_resolution_clock::now();
 		auto ended = chrono::high_resolution_clock::now();
-		unsigned long long stime = chrono::duration_cast<chrono::nanoseconds>(ended - start).count();
-		printf("Envie: %llu \n", stime);
 
-		// unsigned long data = 10101010;
+		unsigned long long stime = chrono::duration_cast
+									<chrono::nanoseconds>(ended - start).count();
+
+		printf("Sent: %llu \n", stime);
+
 		radio.stopListening();
 
-		if (!radio.write(&stime, sizeof(unsigned long long)))
-			printf("Could not send \n");
+		if (radio.available())
+			if (!radio.write(&stime, sizeof(unsigned long long)))
+				printf("Could not send \n");
 
 		fflush(stdout);
 
@@ -47,7 +50,7 @@ int main(int argc, char** argv) {
 
 			unsigned long long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long long));
-			printf("LLegó: %llu \n", init_time_r);
+			printf("Received: %llu \n", init_time_r);
 			fflush(stdout);
 		}
 		delay(5);
