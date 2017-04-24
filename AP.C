@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 		/* unsigned long long stime = chrono::duration_cast
 									<chrono::nanoseconds>(ended - 0).count();*/
 
-		duration<long long> time_span = duration_cast<duration<long long>>(ended);
+		duration<unsigned long long> stime = duration_cast<duration<unsigned long long>>(ended);
 
 		printf("Sent: %llu \n", stime);
 
