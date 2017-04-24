@@ -38,21 +38,22 @@ int main(int argc, char** argv) {
 
 		radio.stopListening();
 
-		if (!radio.write(&stime, sizeof(unsigned long long)))
-			printf("Could not send \n");
+		while (!radio.write(&stime, sizeof(unsigned long long)))
+			printf("Could not sent \n");
 
 		fflush(stdout);
 
 		radio.startListening();
 
-		if (radio.available()) {
+		if (radio.available()) { // Test with while
 
 			unsigned long long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long long));
 			printf("Received: %llu \n", init_time_r);
 			fflush(stdout);
 		}
-		delay(5);
+
+		delay(10);
 	}
 	return 0;
 }
