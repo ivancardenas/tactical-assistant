@@ -38,9 +38,8 @@ int main(int argc, char** argv) {
 
 		radio.stopListening();
 
-		if (radio.available())
-			if (radio.write(&stime, sizeof(unsigned long long)))
-				printf("Sent \n");
+		if (!radio.write(&stime, sizeof(unsigned long long)))
+			printf("Sent \n");
 
 		fflush(stdout);
 
