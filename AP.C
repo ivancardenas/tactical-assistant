@@ -39,16 +39,15 @@ int main(int argc, char** argv) {
 
 		radio.stopListening();
 
-		// if (!radio.write(&stime, sizeof(unsigned long long))) {}
-		radio.write(&stime, sizeof(unsigned long long));
+		if (!radio.write(&stime, sizeof(unsigned long long))) {}
 
 		// fflush(stdout);
 
 		radio.startListening();
 
-		// while (!radio.available() && timeout < 100) timeout++;
-		while (radio.available())
-			radio.read(&rtime, sizeof(unsigned long long));
+		while (!radio.available() && timeout < 100) timeout++;
+
+		radio.read(&rtime, sizeof(unsigned long long));
 
 		printf("Received: %llu \n", rtime);
 
