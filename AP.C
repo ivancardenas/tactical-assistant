@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 		if (!radio.write(&stime, sizeof(unsigned long long)))
 			printf("Could not send \n");
 
-		fflush(stdout);
+		// fflush(stdout);
 
 		radio.startListening();
 
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 			unsigned long long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long long));
 			printf("LLegó: %llu \n", init_time_r);
-			fflush(stdout);
+			// fflush(stdout);
 		}
 		delay(5);
 	}
