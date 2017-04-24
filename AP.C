@@ -40,11 +40,11 @@ int main(int argc, char** argv) {
 
 		radio.stopListening();
 
-		if (!radio.write(&stime, sizeof(unsigned long long))) {}
-
 		auto start = high_resolution_clock::now();
 		unsigned long long stn = duration_cast
 			<nanoseconds>(start.time_since_epoch()).count();
+
+		if (!radio.write(&stn, sizeof(unsigned long long))) {}
 
 		// fflush(stdout);
 
