@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
 			fflush(stdout);
 		}
 
-		// delay(10);
+		delay(3);
 	}
 	return 0;
 }
