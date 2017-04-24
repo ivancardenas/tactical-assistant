@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 
 		radio.startListening();
 
-		while (!radio.available()) {}
+		while (!radio.available() && timeout < 20) timeout++;
 
 		radio.read(&rtime, sizeof(unsigned long long));
 
