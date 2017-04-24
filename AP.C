@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 
 		while (!radio.write(&stime, sizeof(unsigned long long))) {}
 
-		fflush(stdout);
+		// fflush(stdout);
 
 		radio.startListening();
 
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 			fflush(stdout);
 		// }
 
-		delay(10);
+		// delay(10);
 	}
 	return 0;
 }
