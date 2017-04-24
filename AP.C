@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 
 		auto start = high_resolution_clock::now();
 		unsigned long long stn = duration_cast
-			<nanoseconds>(start.time_since_epoch()).count();
+			<nanoseconds>(start.time_since_epoch()).count() - 1493014497000000000;
 
 		printf(" Mande: %llu", stn);
 
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 
 		auto ended = high_resolution_clock::now();
 		unsigned long long etn = duration_cast
-			<nanoseconds>(start.time_since_epoch()).count();
+			<nanoseconds>(start.time_since_epoch()).count() - 1493014497000000000;
 
 		printf("Received: %llu \n", etn - stn);
 
