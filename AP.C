@@ -36,8 +36,6 @@ int main(int argc, char** argv) {
 		unsigned long long stime = chrono::duration_cast
 									<chrono::nanoseconds>(ended - start).count(); */
 
-		printf("Sent: %llu \n", stime);
-
 		radio.stopListening();
 
 		auto start = high_resolution_clock::now();
