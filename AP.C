@@ -10,7 +10,8 @@ using namespace std;
 
 RF24 radio(22, 0);
 
-unsigned long timeoutPeriod = 3000000;
+unsigned int timeout = 0;
+unsigned long long time;
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
@@ -44,16 +45,15 @@ int main(int argc, char** argv) {
 
 		radio.startListening();
 
-		while (!radio.available()) {}
-		// if (radio.available()) { // Test with while
+		while (!radio.available() && timeout < 100) timeout++;
 
-			unsigned long long time;
-			radio.read(&time, sizeof(unsigned long long));
-			printf("Received: %llu \n", time);
-			fflush(stdout);
-		// }
+		radio.read(&time, sizeof(unsigned long long));
 
-		// delay(10);
+		printf("Received: %llu \n", time);
+
+		// fflush(stdout);
+
+		timeout = 0;
 	}
 	return 0;
 }
