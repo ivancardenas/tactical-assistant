@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 
 			unsigned long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long));
-			printf("%s",init_time_r);
+			printf("%lu",init_time_r);
 			fflush(stdout);
 		}
 		delay(5);
