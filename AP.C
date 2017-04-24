@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 		unsigned long long etn = duration_cast
 			<nanoseconds>(start.time_since_epoch()).count() - 1493014497000000000;
 
-		printf("Received: %llu \n", etn - stn);
+		printf("Received: %llu \n", (etn - stn));
 
 		// fflush(stdout);
 
