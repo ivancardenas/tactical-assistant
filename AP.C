@@ -39,7 +39,6 @@ int main(int argc, char** argv) {
 		radio.stopListening();
 
 		if (!radio.write(&stime, sizeof(unsigned long long))) {}
-		radio.write(&stime, sizeof(unsigned long long));
 
 		// fflush(stdout);
 
