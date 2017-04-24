@@ -48,7 +48,8 @@ int main(int argc, char** argv) {
 		// if (radio.available()) { // Test with while
 
 			unsigned long long init_time_r;
-			radio.read(&init_time_r, sizeof(unsigned long long));
+			if (radio.available())
+				radio.read(&init_time_r, sizeof(unsigned long long));
 			printf("Received: %llu \n", init_time_r);
 			fflush(stdout);
 		// }
