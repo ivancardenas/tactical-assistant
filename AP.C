@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 		// unsigned long data = 10101010;
 		radio.stopListening();
 
-		if (radio.write(&stime, sizeof(unsigned long)))
+		if (radio.write(&stime, sizeof(unsigned long long)))
 			printf(".");
 		else printf("?");
 
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 		if (radio.available()) {
 
 			unsigned long init_time_r;
-			radio.read(&init_time_r, sizeof(unsigned long));
+			radio.read(&init_time_r, sizeof(unsigned long long));
 			printf("%llu", init_time_r);
 			fflush(stdout);
 		}
