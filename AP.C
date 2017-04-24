@@ -38,14 +38,14 @@ int main(int argc, char** argv) {
 
 		radio.stopListening();
 
-		while (!radio.write(&stime, sizeof(unsigned long long))) {}
+		if (!radio.write(&stime, sizeof(unsigned long long))) {}
 		radio.write(&stime, sizeof(unsigned long long));
 
 		// fflush(stdout);
 
 		radio.startListening();
 
-		while (!radio.available()) {}
+		if (!radio.available()) {}
 		// if (radio.available()) { // Test with while
 
 			unsigned long long init_time_r;
