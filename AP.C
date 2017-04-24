@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
 		fflush(stdout);
 
 		radio.startListening();
-		
-		while (radio.available()) { // Test with while
+
+		if (radio.available()) { // Test with while
 
 			unsigned long long init_time_r;
 			radio.read(&init_time_r, sizeof(unsigned long long));
