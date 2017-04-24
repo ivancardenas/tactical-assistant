@@ -38,9 +38,8 @@ int main(int argc, char** argv) {
 
 		radio.stopListening();
 
-		while (!radio.write(&stime, sizeof(unsigned long long))) {
-			printf("Could not sent.\n"); delay(500);
-		}
+		while (!radio.write(&stime, sizeof(unsigned long long)))
+			printf("Could not sent.\n");
 
 		fflush(stdout);
 
