@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 
 		radio.startListening();
 
-		if (!radio.available()) {}
+		while (!radio.available()) {}
 		// if (radio.available()) { // Test with while
 
 			unsigned long long init_time_r;
