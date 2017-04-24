@@ -28,23 +28,26 @@ int main(int argc, char** argv) {
 	// radio.printDetails();
 
 	while (true) {
-		
+
+		auto start = chrono::high_resolution_clock::now();
+		auto ended = chrono::high_resolution_clock::now();
+
+		unsigned long long stime = chrono::duration_cast
+									<chrono::nanoseconds>(ended - start).count();
+
+		printf("Sent: %llu \n", stime);
+
 		radio.stopListening();
 
-		if (!radio.write(&stime, sizeof(unsigned long long))) {} // OK.
-		auto start = chrono::high_resolution_clock::now(); // Take first time.
+		if (!radio.write(&stime, sizeof(unsigned long long))) {}
 
 		// fflush(stdout);
 
 		radio.startListening();
 
-		while (!radio.available() && timeout < 1000) timeout++; // OK.
+		while (!radio.available() && timeout < 1000) timeout++;
 
 		radio.read(&rtime, sizeof(unsigned long long));
-		auto ended = chrono::high_resolution_clock::now(); // Take final time.
-
-		unsigned long long stime = chrono::duration_cast
-									<chrono::nanoseconds>(ended - start).count();
 
 		printf("Received: %llu \n", rtime);
 
