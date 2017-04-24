@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
 			printf("Received: %llu \n", init_time_r);
 			fflush(stdout);
 		}
-		delay(3);
+		delay(5);
 	}
 	return 0;
 }
