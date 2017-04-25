@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 
 		printf("%llu\n", stn);
 
-		stn = 4294967280;
+		stn = 4294967210;
 
 		if (!radio.write(&stn, sizeof(uint64_t))) {}
 
