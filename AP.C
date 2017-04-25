@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 		radio.stopListening();
 
 		auto start = high_resolution_clock::now();
-		unsigned long long stn = duration_cast
+		uint64_t stn = duration_cast
 			<nanoseconds>(start.time_since_epoch()).count() /* - 1493014497000000000*/;
 
 		printf(" Mande: %llu\n", stn);
