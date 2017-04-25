@@ -11,7 +11,7 @@ using namespace std::chrono;
 
 RF24 radio(22, 0);
 
-// unsigned int timeout = 0;
+unsigned int timeout = 0;
 uint64_t rtime; // unsigned long long
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
@@ -21,8 +21,6 @@ int main(int argc, char** argv) {
 	// Configuring nRF24L01+
 	radio.begin();
 	radio.setChannel(110);
-	radio.setRetries(0, 3);
-	// radio.setPayloadSize(250);
 	radio.setPALevel(RF24_PA_LOW);
 	radio.setDataRate(RF24_250KBPS);
 	radio.openWritingPipe(pipes[1]);
@@ -54,8 +52,7 @@ int main(int argc, char** argv) {
 
 		radio.startListening();
 
-		// while (!radio.available() && timeout < 1000) timeout++;
-		while (!radio.available()) {}
+		while (!radio.available() && timeout < 1000) timeout++;
 
 		radio.read(&rtime, 16);
 
@@ -68,7 +65,7 @@ int main(int argc, char** argv) {
 
 		// fflush(stdout);
 
-		// timeout = 0;
+		timeout = 0;
 	}
 	return 0;
 }
