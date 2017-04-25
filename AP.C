@@ -43,7 +43,6 @@ int main(int argc, char** argv) {
 			<nanoseconds>(start.time_since_epoch()).count() - 1493080000000000000;
 
 		printf("%llu\n", stn);
-		stn=9999999;
 
 		if (!radio.write(&stn, sizeof(uint64_t))) {}
 
