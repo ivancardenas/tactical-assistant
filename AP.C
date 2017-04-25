@@ -40,9 +40,9 @@ int main(int argc, char** argv) {
 
 		auto start = high_resolution_clock::now();
 		uint64_t stn = duration_cast // Possibly "unsigned long long"
-			<nanoseconds>(start.time_since_epoch()).count() /* - 1493014497000000000*/;
+			<nanoseconds>(start.time_since_epoch()).count() /* - 1493014497000000000 */;
 
-		printf(" Mande: %llu\n", stn);
+		printf("%llu\n", stn);
 
 		if (!radio.write(&stn, sizeof(uint64_t))) {}
 
@@ -56,10 +56,10 @@ int main(int argc, char** argv) {
 
 		auto ended = high_resolution_clock::now();
 		uint64_t etn = duration_cast // Possibly "unsigned long long"
-			<nanoseconds>(ended.time_since_epoch()).count() /* - 1493014497000000000*/;
+			<nanoseconds>(ended.time_since_epoch()).count() /* - 1493014497000000000 */;
 
 		uint64_t res = etn - stn;
-		printf("Received: %llu \n", etn);
+		printf("%llu\n", etn);
 
 		// fflush(stdout);
 
