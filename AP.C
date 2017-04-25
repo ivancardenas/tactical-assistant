@@ -44,9 +44,10 @@ int main(int argc, char** argv) {
 		uint64_t stn = duration_cast // Possibly "unsigned long long"
 			<nanoseconds>(start.time_since_epoch()).count() - 1493080000000000000;
 
-		printf("%llu\n", stn);
+		// printf("%llu\n", stn);
 
 		stn = 429496729;
+		printf("%i", sizeof(uint64_t));
 
 		if (!radio.write(&stn, sizeof(uint64_t))) {}
 
