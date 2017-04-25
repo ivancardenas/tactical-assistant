@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 		radio.stopListening();
 
 		auto start = high_resolution_clock::now();
-		uint64_t stn = duration_cast
+		uint64_t stn = duration_cast // Possibly "unsigned long long"
 			<nanoseconds>(start.time_since_epoch()).count() /* - 1493014497000000000*/;
 
 		printf(" Mande: %llu\n", stn);
@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
 		radio.read(&rtime, sizeof(unsigned long long));
 
 		auto ended = high_resolution_clock::now();
-		unsigned long long etn = duration_cast
+		uint64_t etn = duration_cast // Possibly "unsigned long long"
 			<nanoseconds>(ended.time_since_epoch()).count() /* - 1493014497000000000*/;
 
 		unsigned long long res = etn - stn;
