@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 
 		auto start = high_resolution_clock::now();
 		uint64_t stn = duration_cast // Possibly "unsigned long long"
-			<nanoseconds>(start.time_since_epoch()).count() /* - 1493014497000000000 */;
+			<nanoseconds>(start.time_since_epoch()).count() - 1493080000000000000;
 
 		printf("%llu\n", stn);
 
@@ -56,10 +56,10 @@ int main(int argc, char** argv) {
 
 		auto ended = high_resolution_clock::now();
 		uint64_t etn = duration_cast // Possibly "unsigned long long"
-			<nanoseconds>(ended.time_since_epoch()).count() /* - 1493014497000000000 */;
+			<nanoseconds>(ended.time_since_epoch()).count() - 1493080000000000000;
 
 		uint64_t res = etn - stn;
-		printf("%llu\n", etn);
+		printf("%llu\n", res);
 
 		// fflush(stdout);
 
