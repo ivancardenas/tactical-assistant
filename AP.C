@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
 	// Configuring nRF24L01+
 	radio.begin();
 	radio.setChannel(110);
+	radio.setRetries(0, 0);
 	radio.setPayloadSize(250);
 	radio.setPALevel(RF24_PA_LOW);
 	radio.setDataRate(RF24_250KBPS);
@@ -45,7 +46,7 @@ int main(int argc, char** argv) {
 
 		printf("%llu\n", stn);
 
-		stn = 4294967290;
+		stn = 429496729;
 
 		if (!radio.write(&stn, sizeof(uint64_t))) {}
 
@@ -53,7 +54,8 @@ int main(int argc, char** argv) {
 
 		radio.startListening();
 
-		while (!radio.available() && timeout < 1000) timeout++;
+		// while (!radio.available() && timeout < 1000) timeout++;
+		while (!radio.available()) {}
 
 		radio.read(&rtime, sizeof(uint64_t));
 
