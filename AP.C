@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 	radio.begin();
 	radio.setChannel(110);
 	// radio.setRetries(0, 0);
-	radio.setPayloadSize(250);
+	// radio.setPayloadSize(250);
 	radio.setPALevel(RF24_PA_LOW);
 	radio.setDataRate(RF24_250KBPS);
 	radio.openWritingPipe(pipes[1]);
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
 		stn = 4294967290;
 
-		if (!radio.write(&stn, 250)) {}
+		if (!radio.write(&stn, 16)) {}
 
 		// fflush(stdout);
 
@@ -57,7 +57,7 @@ int main(int argc, char** argv) {
 		// while (!radio.available() && timeout < 1000) timeout++;
 		while (!radio.available()) {}
 
-		radio.read(&rtime, 250);
+		radio.read(&rtime, 16);
 
 		auto ended = high_resolution_clock::now();
 		uint64_t etn = duration_cast // Possibly "unsigned long long"
