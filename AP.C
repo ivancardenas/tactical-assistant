@@ -44,12 +44,11 @@ int main(int argc, char** argv) {
 		uint64_t stn = duration_cast // Possibly "unsigned long long"
 			<nanoseconds>(start.time_since_epoch()).count() - 1493080000000000000;
 
-		// printf("%llu\n", stn);
+		printf("%llu\n", stn);
 
-		stn = 429496729;
-		printf("%zu\n", sizeof(uint64_t));
+		stn = 4294967290;
 
-		if (!radio.write(&stn, sizeof(uint64_t))) {}
+		if (!radio.write(&stn, 64)) {}
 
 		// fflush(stdout);
 
@@ -58,7 +57,7 @@ int main(int argc, char** argv) {
 		// while (!radio.available() && timeout < 1000) timeout++;
 		while (!radio.available()) {}
 
-		radio.read(&rtime, sizeof(uint64_t));
+		radio.read(&rtime, 64);
 
 		auto ended = high_resolution_clock::now();
 		uint64_t etn = duration_cast // Possibly "unsigned long long"
