@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 	// Configuring nRF24L01+
 	radio.begin();
 	radio.setChannel(110);
-	// radio.setRetries(0, 0);
+	radio.setRetries(0, 3);
 	// radio.setPayloadSize(250);
 	radio.setPALevel(RF24_PA_LOW);
 	radio.setDataRate(RF24_250KBPS);
