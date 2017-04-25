@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 			<nanoseconds>(start.time_since_epoch()).count() - 1493014497000000000;
 
 		unsigned long long res = etn - stn;
-		printf("Received: %llu \n", res);
+		printf("Received: %llu \n", etn);
 
 		// fflush(stdout);
 
