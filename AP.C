@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
 		stn = 4294967290;
 
-		if (!radio.write(&stn, 64)) {}
+		if (!radio.write(&stn, 250)) {}
 
 		// fflush(stdout);
 
@@ -57,7 +57,7 @@ int main(int argc, char** argv) {
 		// while (!radio.available() && timeout < 1000) timeout++;
 		while (!radio.available()) {}
 
-		radio.read(&rtime, 64);
+		radio.read(&rtime, 250);
 
 		auto ended = high_resolution_clock::now();
 		uint64_t etn = duration_cast // Possibly "unsigned long long"
