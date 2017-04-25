@@ -12,7 +12,7 @@ using namespace std::chrono;
 RF24 radio(22, 0);
 
 unsigned int timeout = 0;
-unsigned long long rtime;
+uint64_t rtime; // unsigned long long
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
 
@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 
 		printf(" Mande: %llu\n", stn);
 
-		if (!radio.write(&stn, sizeof(unsigned long long))) {}
+		if (!radio.write(&stn, sizeof(uint64_t))) {}
 
 		// fflush(stdout);
 
@@ -52,13 +52,13 @@ int main(int argc, char** argv) {
 
 		while (!radio.available() && timeout < 1000) timeout++;
 
-		radio.read(&rtime, sizeof(unsigned long long));
+		radio.read(&rtime, sizeof(uint64_t));
 
 		auto ended = high_resolution_clock::now();
 		uint64_t etn = duration_cast // Possibly "unsigned long long"
 			<nanoseconds>(ended.time_since_epoch()).count() /* - 1493014497000000000*/;
 
-		unsigned long long res = etn - stn;
+		uint64_t res = etn - stn;
 		printf("Received: %llu \n", etn);
 
 		// fflush(stdout);
