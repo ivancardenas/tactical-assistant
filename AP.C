@@ -11,7 +11,7 @@ using namespace std::chrono;
 
 RF24 radio(22, 0);
 
-unsigned int timeout = 0;
+// unsigned int timeout = 0;
 uint64_t rtime; // unsigned long long
 
 const uint64_t pipes[2] = { 0x7878787878LL, 0xB3B4B5B6F1LL };
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
 
 		// fflush(stdout);
 
-		timeout = 0;
+		// timeout = 0;
 	}
 	return 0;
 }
